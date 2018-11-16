@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="saumi addon admin page">
+    <meta name="author" content="max-@-huzm.ru">
+    <link rel="icon" href=" {{ url_for('static', filename='favicon.ico') }} ">
+    <link href=" {{ url_for('static', filename='css/bootstrap.min.css') }} " rel="stylesheet">
+    <link href=" {{ url_for('static', filename='css/common.css') }} " rel="stylesheet">
+    <title>Shop Item - Start Bootstrap Template</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <textarea id="querybox" class="whiteback fullwidth"></textarea>
+      </div>
+      <div class="col-md-6">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action">select * from bizolda</a>
+          <a href="#" class="list-group-item list-group-item-action">select table_name from dba_tables</a>
+          <a href="#" class="list-group-item list-group-item-action">select count(*) from dba_tables where</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <button id="sendbtn">Send query</button>
+      </div>
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="responsebox" class="whiteback fullwidth">No results here</div>
+        </div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+  <script src=" {{ url_for('static', filename='js/bootstrap.bundle.min.js') }} "></script>
+  <script src=" {{ url_for('static', filename='js/engine.js') }} "></script>
+</body>
+</html>

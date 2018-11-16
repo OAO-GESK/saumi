@@ -1,0 +1,21 @@
+body {
+    background-color: lightgrey;
+    padding-top: 2em;
+}
+
+.whiteback {
+    background-color: white;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+#querybox {
+    height: 100%;
+    min-height: 8em;
+}
+
+#responsebox {
+    padding: 1em;
+}
