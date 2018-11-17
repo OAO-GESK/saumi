@@ -21,7 +21,7 @@ def dbquery():
 		if 'update' in q:
 			return '<b>UPDATE</b> query not allowed here!'
 		dsn = ora.makedsn(cpar['host'], '1521')
-		cn = ora.connect(user=cpar['usr'], password=cpar['pas'], dsn=dsn)
+		cn = ora.connect(user=cpar['usr'], password=cpar['pas'], encoding=cpar['enc'], dsn=dsn)
 		cur = cn.cursor()
 		try:
 			cur.execute(q)
