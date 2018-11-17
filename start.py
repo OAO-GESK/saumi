@@ -1,12 +1,6 @@
 from flask import Flask, render_template, url_for, request
 import cx_Oracle as ora
-
-cpar={
-	'usr': 'sm',
-	'pas': 'smpwd',
-	'enc': 'UTF-8',
-}
-cpar['dsn'] = ora.makedsn('localhost', '1521')
+from params import cpar
 
 app = Flask('SaumiAddon', static_folder='assets')
 
@@ -26,13 +20,14 @@ def dbquery():
 		q = request.form['query']
 		if 'update' in q:
 			return '<b>UPDATE</b> query not allowed here!'
-		cn = ora.connect(user=cpar['usr'], password=cpar['pas'], dsn=cpar['dsn'])
+		dsn = ora.makedsn(cpar['host'], '1521')
+		cn = ora.connect(user=cpar['usr'], password=cpar['pas'], dsn=dsn)
 		cur = cn.cursor()
 		try:
 			cur.execute(q)
 		except Exception as e:
 			return str(e)
-		s = '<table>'
+		s = '<table class="table">'
 		for row in cur:
 			s += '<tr>'
 			for el in row:
