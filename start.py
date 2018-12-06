@@ -18,11 +18,18 @@ def index():
 	for row in cur: buildings = row[0]
 	return render_template('startpage.html', totalobjects=objects, totalgrounds=grounds, totalbuildings=buildings)
 
+
+@app.route('/find', methods=['POST'])
+def find():
+	return 'Errow'
+
+
 @app.route('/admin/<int:id>')
 def admin(id=0):
 	if id != 31628:
 		return url_for('static', filename='js/engine.js')
 	return render_template('admin.html')
+
 
 @app.route('/admin/dbquery', methods=['POST'])
 def dbquery():

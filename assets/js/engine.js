@@ -12,4 +12,11 @@ $.when($.ready).then(function(){
             $("#sendbtn").click();
         }
     });
+
+    $("#bFind").click(function(){
+        var q = $("#iFind").val()
+        $.post("/find", { query: q }).done(function(data){
+            $("#dResult").html('Error while database query: table doesn\'t exist')
+        });
+    });
 });
