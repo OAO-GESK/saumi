@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="saumi addon admin page">
+    <meta name="author" content="max-@-huzm.ru">
+    <link rel="icon" href=" {{ url_for('static', filename='favicon.ico') }} ">
+    <link href=" {{ url_for('static', filename='css/bootstrap.min.css') }} " rel="stylesheet">
+    <link href=" {{ url_for('static', filename='css/common.css') }} " rel="stylesheet">
+    <title>Расширение ПО САУМИ</title>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Расширение ПО САУМИ</h4>
+          <p class="mb-0">Модуль дополненного функционала выборки и структуризации данных БД САУМИ.</p>
+          <p>Тестовая версия</p>
+          <hr>
+          <p class="mb-0">Ver. 0.1. 11/2018</p>
+        </div>        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="alert alert-secondary" role="alert">
+          Всего объектов в базе данных:
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="alert alert-secondary" role="alert">
+          {{ totalobjects }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="alert alert-secondary" role="alert">
+          Земельных участков:
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="alert alert-secondary" role="alert">
+          {{ totalgrounds }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="alert alert-secondary" role="alert">
+          Зданий:
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="alert alert-secondary" role="alert">
+          {{ totalbuildings }}
+        </div>
+      </div>
+    </div>
+      
+  </div>
+
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+  <script src=" {{ url_for('static', filename='js/bootstrap.bundle.min.js') }} "></script>
+  <script src=" {{ url_for('static', filename='js/engine.js') }} "></script>
+</body>
+</html>

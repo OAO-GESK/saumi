@@ -6,7 +6,17 @@ app = Flask('SaumiAddon', static_folder='assets')
 
 @app.route('/')
 def index():
-	return "<h1>Hello bro!</h1>"
+	dsn = ora.makedsn(cpar['host'], '1521')
+	cn = ora.connect(user=cpar['usr'], password=cpar['pas'], encoding=cpar['enc'], dsn=dsn)
+	cur = cn.cursor()
+	objects = grounds = buildings = None
+	cur.execute('select count(*) from objects')
+	for row in cur: objects = row[0]
+	cur.execute('select count(*) from grounds')
+	for row in cur: grounds = row[0]
+	cur.execute('select count(*) from buildings')
+	for row in cur: buildings = row[0]
+	return render_template('startpage.html', totalobjects=objects, totalgrounds=grounds, totalbuildings=buildings)
 
 @app.route('/admin/<int:id>')
 def admin(id=0):
