@@ -19,9 +19,6 @@ def index():
 	return render_template('startpage.html', totalobjects=objects, totalgrounds=grounds, totalbuildings=buildings)
 
 
-@app.route('/find', methods=['POST'])
-def find():
-	return 'Errow'
 
 
 @app.route('/admin/<int:id>')
@@ -29,6 +26,34 @@ def admin(id=0):
 	if id != 31628:
 		return url_for('static', filename='js/engine.js')
 	return render_template('admin.html')
+
+
+@app.route('/find', methods=['POST'])
+def find():
+	dsn = ora.makedsn(cpar['host'], '1521')
+	cn = ora.connect(user=cpar['usr'], password=cpar['pas'], encoding=cpar['enc'], dsn=dsn)
+	cur = cn.cursor()
+	q = """
+		select o.description, c.name, m.client_caption
+		from objects o
+		inner join object_position p on p.object_id = o.id 
+		inner join clients c on c.id = p.client_id
+		inner join movetype m on m.id = p.movetype_id
+		where c.name like '%{}%'
+	"""
+	par = request.form['qs']
+	cur.execute(q.format(par))
+	lst = cur.fetchall()
+	if len(lst) > 100:
+		return '<h5>Слишком много результатов в выборке</h5>'
+	else:
+		r = '<table class="table">'
+		for row in lst:
+			r += '<tr>'
+			r += '<td>{}</td><td>{}</td><td>{}</td>'.format(row[0], row[1], row[2])
+			r += '</tr>'
+		r += '</table>'
+		return r
 
 
 @app.route('/admin/dbquery', methods=['POST'])

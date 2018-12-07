@@ -1,7 +1,7 @@
 $.when($.ready).then(function(){
 
     $("#sendbtn").click(function(){
-        var q = $("#querybox").val()
+        var q = $("#querybox").val();
         $.post("/admin/dbquery", { query: q }).done(function(data){
             $("#responsebox").html(data);
         });
@@ -14,9 +14,11 @@ $.when($.ready).then(function(){
     });
 
     $("#bFind").click(function(){
-        var q = $("#iFind").val()
-        $.post("/find", { query: q }).done(function(data){
-            $("#dResult").html('Error while database query: table doesn\'t exist')
+        var q = $("#iFind").val();
+        $("#dResult").html("");
+        $.post("/find", { qs: q }).done(function(data){
+            $("#dResult").html(data);
         });
     });
+
 });
